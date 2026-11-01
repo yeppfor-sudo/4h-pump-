@@ -12,16 +12,14 @@ FRACTAL_LEN = 5
 COOLDOWN = 24
 TOP_GAINERS = 40
 TIMEFRAMES = ['5m','15m']
-GAIN_THRESHOLD = 7  # CHANGED 15 -> 7 for low market
+GAIN_THRESHOLD = 7
 
 BLOCK_ALL = {'BTC','ETH','SOL','BNB','TRX','XRP','ADA','DOGE','AVAX','DOT','LINK','LTC','BCH','XLM','ETC','HBAR','APT','NEAR','UNI','FIL','ARB','OP','ATOM','MATIC','POL','TON','SHIB','PEPE','CRO','LEO','OKB','BGB','SUI','LDO','RNDR','TAO','FET','WIF','ENA','JUP','SEI','TIA','ONDO','W','PYTH','STRK','JTO','ENS'}
 
-def is_valid(sym):
-    if not sym.endswith('USDT:USDT'): return False
-    base=sym.split('/')[0].upper()
+def is_valid(base):
+    base=base.upper()
     if base in BLOCK_ALL: return False
-    if len(base)<2 or len(base)>8: return False
-    if any(c.isdigit() for c in base): return False
+    if len(base)<2 or len(base)>10: return False
     if not base.isalpha(): return False
     return True
 
@@ -80,28 +78,54 @@ hist=load_hist()
 now=datetime.now(PKT)
 print(f"Scan LIVE TOP40 >{GAIN_THRESHOLD}% | 5m 15m BEAR CHoCH | {now.strftime('%H:%M PKT')}", flush=True)
 
+# --- NEW: USE MEXC OFFICIAL API (same as App) ---
+try:
+    r = requests.get("https://contract.mexc.com/api/v1/contract/ticker", timeout=15).json()
+    tickers = r['data']
+    print(f"Got {len(tickers)} from MEXC contract API", flush=True)
+    gainers=[]
+    for t in tickers:
+        sym = t['symbol']  # e.g. ESPORTS_USDT
+        if not sym.endswith('_USDT'): continue
+        base = sym.replace('_USDT','')
+        if not is_valid(base): continue
+        try:
+            ch = float(t['riseFallRate'])*100
+            if ch < GAIN_THRESHOLD: continue
+            vol = float(t.get('amount24',0))
+            # don't block by volume for new coins
+            gainers.append((base, ch, f"{base}/USDT:USDT"))
+        except: continue
+    gainers.sort(key=lambda x:x[1],reverse=True)
+    top=gainers[:TOP_GAINERS]
+    print(f"TOP {TOP_GAINERS} >{GAIN_THRESHOLD}% FROM MEXC APP API: {top[:10]}", flush=True)
+except Exception as e:
+    print(f"API fail {e}, fallback to ccxt", flush=True)
+    top=[]
+
+# Fallback if API fails
+if not top:
+    ex=ccxt.mexc({'enableRateLimit':True,'options':{'defaultType':'swap'}})
+    ex.load_markets()
+    tickers = ex.fetch_tickers()
+    gainers=[]
+    for sym,t in tickers.items():
+        if not sym.endswith('USDT:USDT'): continue
+        base=sym.split('/')[0]
+        if not is_valid(base): continue
+        ch = t.get('percentage') or 0
+        if ch < GAIN_THRESHOLD: continue
+        gainers.append((base, ch, sym))
+    gainers.sort(key=lambda x:x[1],reverse=True)
+    top=gainers[:TOP_GAINERS]
+
+# Now scan
 ex=ccxt.mexc({'enableRateLimit':True,'options':{'defaultType':'swap'}})
 ex.load_markets()
-tickers = ex.fetch_tickers()
-
-gainers=[]
-for sym,t in tickers.items():
-    if not is_valid(sym): continue
-    try:
-        ch = t.get('percentage')
-        if ch is None: ch = float(t.get('info',{}).get('riseFallRate',0))*100
-        if ch < GAIN_THRESHOLD: continue
-        if (t.get('quoteVolume',0) or 0) < 50000: continue
-        gainers.append((sym,float(ch)))
-    except: continue
-
-gainers.sort(key=lambda x:x[1],reverse=True)
-top=gainers[:TOP_GAINERS]
-print(f"TOP {TOP_GAINERS} >{GAIN_THRESHOLD}%: {[(s.split('/')[0], f'{c:.1f}%') for s,c in top]}", flush=True)
 
 found=0
-for sym,gain in top:
-    coin = sym.split('/')[0].upper()
+for base,gain,sym in top:
+    coin=base.upper()
     if coin in hist and time.time()-hist[coin] < COOLDOWN*3600: continue
     for tf in TIMEFRAMES:
         try:
