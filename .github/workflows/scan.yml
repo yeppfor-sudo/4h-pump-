@@ -11,8 +11,6 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -26,6 +24,6 @@ jobs:
           git config --global user.name "bot"
           git config --global user.email "bot@bot.com"
           if [ ! -f alerts_history.json ]; then echo '{}' > alerts_history.json; fi
-          git add alerts_history.json || true
+          git add alerts_history.json
           git diff --staged --quiet || git commit -m "update history" || true
           git push || true
