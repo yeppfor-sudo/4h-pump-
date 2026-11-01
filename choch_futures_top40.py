@@ -17,10 +17,11 @@ GAIN_THRESHOLD = 7
 BLOCK_ALL = {'BTC','ETH','SOL','BNB','TRX','XRP','ADA','DOGE','AVAX','DOT','LINK','LTC','BCH','XLM','ETC','HBAR','APT','NEAR','UNI','FIL','ARB','OP','ATOM','MATIC','POL','TON','SHIB','PEPE','CRO','LEO','OKB','BGB','SUI','LDO','RNDR','TAO','FET','WIF','ENA','JUP','SEI','TIA','ONDO','W','PYTH','STRK','JTO','ENS'}
 
 def is_valid(base):
-    base=base.upper()
-    if base in BLOCK_ALL: return False
-    if len(base)<2 or len(base)>10: return False
-    if not base.isalpha(): return False
+    b=base.upper().replace('1000','').replace('10000','')
+    if b in BLOCK_ALL: return False
+    if len(b)<2 or len(b)>12: return False
+    # allow only A-Z, block Chinese like 牛来
+    if not b.isalpha(): return False
     return True
 
 def send_photo(p,c):
@@ -78,48 +79,57 @@ hist=load_hist()
 now=datetime.now(PKT)
 print(f"Scan LIVE TOP40 >{GAIN_THRESHOLD}% | 5m 15m BEAR CHoCH | {now.strftime('%H:%M PKT')}", flush=True)
 
-# --- NEW: USE MEXC OFFICIAL API (same as App) ---
+# --- FIXED GAINERS FETCH - TRY 3 ENDPOINTS ---
+gainers_raw=[]
 try:
-    r = requests.get("https://contract.mexc.com/api/v1/contract/ticker", timeout=15).json()
-    tickers = r['data']
-    print(f"Got {len(tickers)} from MEXC contract API", flush=True)
-    gainers=[]
-    for t in tickers:
-        sym = t['symbol']  # e.g. ESPORTS_USDT
+    # Endpoint 1: contract ticker
+    r1 = requests.get("https://contract.mexc.com/api/v1/contract/ticker", timeout=10).json()
+    for t in r1.get('data',[]):
+        sym=t['symbol']
         if not sym.endswith('_USDT'): continue
-        base = sym.replace('_USDT','')
-        if not is_valid(base): continue
-        try:
-            ch = float(t['riseFallRate'])*100
-            if ch < GAIN_THRESHOLD: continue
-            vol = float(t.get('amount24',0))
-            # don't block by volume for new coins
-            gainers.append((base, ch, f"{base}/USDT:USDT"))
-        except: continue
-    gainers.sort(key=lambda x:x[1],reverse=True)
-    top=gainers[:TOP_GAINERS]
-    print(f"TOP {TOP_GAINERS} >{GAIN_THRESHOLD}% FROM MEXC APP API: {top[:10]}", flush=True)
-except Exception as e:
-    print(f"API fail {e}, fallback to ccxt", flush=True)
-    top=[]
+        base=sym.replace('_USDT','')
+        gainers_raw.append((base, float(t.get('riseFallRate',0))*100, f"{base}/USDT:USDT", "c1"))
+    print(f"c1 got {len(gainers_raw)}", flush=True)
+except Exception as e: print(f"c1 fail {e}", flush=True)
 
-# Fallback if API fails
-if not top:
-    ex=ccxt.mexc({'enableRateLimit':True,'options':{'defaultType':'swap'}})
-    ex.load_markets()
-    tickers = ex.fetch_tickers()
-    gainers=[]
-    for sym,t in tickers.items():
-        if not sym.endswith('USDT:USDT'): continue
-        base=sym.split('/')[0]
-        if not is_valid(base): continue
-        ch = t.get('percentage') or 0
+try:
+    # Endpoint 2: spot 24hr ticker (often has ESPORTS, AIOT etc)
+    r2 = requests.get("https://api.mexc.com/api/v3/ticker/24hr", timeout=10).json()
+    for t in r2:
+        sym=t['symbol']
+        if not sym.endswith('USDT'): continue
+        base=sym.replace('USDT','')
+        ch=float(t.get('priceChangePercent',0))*100
         if ch < GAIN_THRESHOLD: continue
-        gainers.append((base, ch, sym))
-    gainers.sort(key=lambda x:x[1],reverse=True)
-    top=gainers[:TOP_GAINERS]
+        gainers_raw.append((base, ch, f"{base}/USDT:USDT", "s3"))
+    print(f"s3 added, total {len(gainers_raw)}", flush=True)
+except Exception as e: print(f"s3 fail {e}", flush=True)
 
-# Now scan
+# Merge, dedup by base, keep highest gain
+merged={}
+for base,ch,sym,src in gainers_raw:
+    if base not in merged or ch > merged[base][1]:
+        merged[base]=(base,ch,sym)
+
+all_sorted=sorted(merged.values(), key=lambda x:x[1], reverse=True)
+print(f"RAW TOP 20 BEFORE FILTER: {all_sorted[:20]}", flush=True)
+
+# Now apply is_valid filter
+filtered=[]
+for base,ch,sym in all_sorted:
+    if not is_valid(base): 
+        print(f"Filtered out {base} {ch:.1f}% - invalid", flush=True)
+        continue
+    if ch < GAIN_THRESHOLD: continue
+    filtered.append((base,ch,sym))
+
+top=filtered[:TOP_GAINERS]
+print(f"FINAL TOP {TOP_GAINERS} >{GAIN_THRESHOLD}% : {top[:15]}", flush=True)
+
+if not top:
+    print("No top gainers, abort", flush=True)
+    exit()
+
 ex=ccxt.mexc({'enableRateLimit':True,'options':{'defaultType':'swap'}})
 ex.load_markets()
 
