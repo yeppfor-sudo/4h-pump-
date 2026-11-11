@@ -1,1 +1,77 @@
-{}
+{
+ "0G_USDT": {
+  "alert_ts": 1794417637,
+  "grade": "A",
+  "signal_ts": 1794398400
+ },
+ "AAOISTOCK_USDT": {
+  "alert_ts": 1794417639,
+  "grade": "A",
+  "signal_ts": 1794398400
+ },
+ "AEON1_USDT": {
+  "alert_ts": 1794417670,
+  "grade": "B",
+  "signal_ts": 1794398400
+ },
+ "BAN_USDT": {
+  "alert_ts": 1794417656,
+  "grade": "B",
+  "signal_ts": 1794398400
+ },
+ "BILL_USDT": {
+  "alert_ts": 1794417652,
+  "grade": "B",
+  "signal_ts": 1794398400
+ },
+ "DDOGSTOCK_USDT": {
+  "alert_ts": 1794417648,
+  "grade": "B",
+  "signal_ts": 1794398400
+ },
+ "DVNSTOCK_USDT": {
+  "alert_ts": 1794417673,
+  "grade": "B",
+  "signal_ts": 1794398400
+ },
+ "DYM_USDT": {
+  "alert_ts": 1794417654,
+  "grade": "B",
+  "signal_ts": 1794398400
+ },
+ "FRMISTOCK_USDT": {
+  "alert_ts": 1794417631,
+  "grade": "A",
+  "signal_ts": 1794398400
+ },
+ "ORCLSTOCK_USDT": {
+  "alert_ts": 1794417646,
+  "grade": "B",
+  "signal_ts": 1794398400
+ },
+ "PWRSTOCK_USDT": {
+  "alert_ts": 1794417677,
+  "grade": "B",
+  "signal_ts": 1794398400
+ },
+ "TREE_USDT": {
+  "alert_ts": 1794417675,
+  "grade": "B",
+  "signal_ts": 1794398400
+ },
+ "USARSTOCK_USDT": {
+  "alert_ts": 1794417642,
+  "grade": "A",
+  "signal_ts": 1794398400
+ },
+ "VELVET_USDT": {
+  "alert_ts": 1794417679,
+  "grade": "B",
+  "signal_ts": 1794398400
+ },
+ "VLOSTOCK_USDT": {
+  "alert_ts": 1794417644,
+  "grade": "B",
+  "signal_ts": 1794398400
+ }
+}
