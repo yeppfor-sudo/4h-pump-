@@ -3,6 +3,7 @@ MEXC perpetual scanner - 4H squeeze + breakout (GitHub Actions version)
 
 Pattern: long drop -> EMA 6/12/20 squeezed in a tight base -> big green candle
 closing above all 3 EMAs. Closed 4H candles only. Chart photo sent to Telegram.
+Same pair is alerted at most once per 24h (counted by signal candle).
 """
 import os, io, json, time, requests
 import numpy as np
@@ -296,17 +297,14 @@ def main():
           f"| alerting on: {','.join(ALERT_GRADES)}")
 
     state = load_state()
-    now = time.time()
     to_send = []
     for c in candidates:
         if c["grade"] not in ALERT_GRADES:
             continue
         prev = state.get(c["symbol"])
-        if prev:
-            if prev.get("signal_ts") == c["signal_ts"]:
-                continue                                   # same candle already alerted
-            if now - prev.get("alert_ts", 0) < COOLDOWN_HOURS * 3600:
-                continue                                   # 24h cooldown
+        # once per 24h per pair, counted by signal candle (0 diff = same candle)
+        if prev and c["signal_ts"] - int(prev.get("signal_ts", 0)) < COOLDOWN_HOURS * 3600:
+            continue
         to_send.append(c)
 
     to_send.sort(key=lambda x: (x["grade"], -x["score"]))
