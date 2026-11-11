@@ -14,6 +14,11 @@
   "grade": "B",
   "signal_ts": 1794398400
  },
+ "AGPUSTOCK_USDT": {
+  "alert_ts": 1794418235,
+  "grade": "B",
+  "signal_ts": 1794398400
+ },
  "BAN_USDT": {
   "alert_ts": 1794417656,
   "grade": "B",
@@ -21,6 +26,26 @@
  },
  "BILL_USDT": {
   "alert_ts": 1794417652,
+  "grade": "B",
+  "signal_ts": 1794398400
+ },
+ "BOTSTOCK_USDT": {
+  "alert_ts": 1794418231,
+  "grade": "B",
+  "signal_ts": 1794398400
+ },
+ "CLSKSTOCK_USDT": {
+  "alert_ts": 1794418259,
+  "grade": "B",
+  "signal_ts": 1794398400
+ },
+ "COINBASE_USDT": {
+  "alert_ts": 1794418264,
+  "grade": "B",
+  "signal_ts": 1794398400
+ },
+ "CRWDSTOCK_USDT": {
+  "alert_ts": 1794418242,
   "grade": "B",
   "signal_ts": 1794398400
  },
@@ -44,8 +69,33 @@
   "grade": "A",
   "signal_ts": 1794398400
  },
+ "MONAD_USDT": {
+  "alert_ts": 1794418238,
+  "grade": "B",
+  "signal_ts": 1794398400
+ },
+ "OKTASTOCK_USDT": {
+  "alert_ts": 1794418218,
+  "grade": "B",
+  "signal_ts": 1794398400
+ },
+ "ONT_USDT": {
+  "alert_ts": 1794418269,
+  "grade": "B",
+  "signal_ts": 1794398400
+ },
  "ORCLSTOCK_USDT": {
   "alert_ts": 1794417646,
+  "grade": "B",
+  "signal_ts": 1794398400
+ },
+ "ORDER_USDT": {
+  "alert_ts": 1794418271,
+  "grade": "B",
+  "signal_ts": 1794398400
+ },
+ "PANASONICSTOCK_USDT": {
+  "alert_ts": 1794418273,
   "grade": "B",
   "signal_ts": 1794398400
  },
@@ -54,14 +104,39 @@
   "grade": "B",
   "signal_ts": 1794398400
  },
+ "RDDTSTOCK_USDT": {
+  "alert_ts": 1794418216,
+  "grade": "B",
+  "signal_ts": 1794398400
+ },
+ "RIVER_USDT": {
+  "alert_ts": 1794418267,
+  "grade": "B",
+  "signal_ts": 1794398400
+ },
+ "TAO_USDT": {
+  "alert_ts": 1794418240,
+  "grade": "B",
+  "signal_ts": 1794398400
+ },
  "TREE_USDT": {
   "alert_ts": 1794417675,
+  "grade": "B",
+  "signal_ts": 1794398400
+ },
+ "TWLOSTOCK_USDT": {
+  "alert_ts": 1794418214,
   "grade": "B",
   "signal_ts": 1794398400
  },
  "USARSTOCK_USDT": {
   "alert_ts": 1794417642,
   "grade": "A",
+  "signal_ts": 1794398400
+ },
+ "USDESTOCK_USDT": {
+  "alert_ts": 1794418233,
+  "grade": "B",
   "signal_ts": 1794398400
  },
  "VELVET_USDT": {
