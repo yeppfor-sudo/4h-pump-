@@ -1,0 +1,63 @@
+name: Squeeze Scanner
+
+on:
+  schedule:
+    # just after every 4h candle close (UTC): 00, 04, 08, 12, 16, 20
+    - cron: "23 0,4,8,12,16,20 * * *"
+  workflow_dispatch:
+    inputs:
+      debug_symbol:
+        description: "Test one pair (e.g. BTC_USDT). Leave empty for full scan"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: squeeze-scanner
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run scanner
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DEBUG_SYMBOL: ${{ github.event.inputs.debug_symbol }}
+          ALERT_GRADES: ${{ vars.ALERT_GRADES }}
+        run: python squeeze_scanner.py
+
+      - name: Save state
+        if: ${{ github.event.inputs.debug_symbol == '' }}
+        run: |
+          git config user.name "scanner-bot"
+          git config user.email "scanner-bot@users.noreply.github.com"
+          git add state_squeeze.json || true
+          if ! git diff --staged --quiet; then
+            git commit -m "update squeeze state"
+            for i in 1 2 3; do
+              git pull --rebase --autostash && git push && break
+              sleep 5
+            done
+          fi
+
+      - name: Keep schedule alive
+        if: ${{ github.event_name == 'schedule' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow enable "Squeeze Scanner" --repo "$GITHUB_REPOSITORY" || true
