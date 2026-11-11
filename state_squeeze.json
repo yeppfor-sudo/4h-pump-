@@ -104,6 +104,11 @@
   "grade": "B",
   "signal_ts": 1794398400
  },
+ "Q_USDT": {
+  "alert_ts": 1794433989,
+  "grade": "B",
+  "signal_ts": 1794412800
+ },
  "RDDTSTOCK_USDT": {
   "alert_ts": 1794418216,
   "grade": "B",
