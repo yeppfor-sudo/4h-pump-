@@ -74,15 +74,35 @@
   "grade": "B",
   "signal_ts": 1794398400
  },
+ "FLEXSTOCK_USDT": {
+  "alert_ts": 1794503995,
+  "grade": "B",
+  "signal_ts": 1794484800
+ },
  "FRMISTOCK_USDT": {
   "alert_ts": 1794417631,
   "grade": "A",
   "signal_ts": 1794398400
  },
+ "GEVSTOCK_USDT": {
+  "alert_ts": 1794503985,
+  "grade": "B",
+  "signal_ts": 1794484800
+ },
+ "KLACSTOCK_USDT": {
+  "alert_ts": 1794503997,
+  "grade": "B",
+  "signal_ts": 1794484800
+ },
  "MONAD_USDT": {
   "alert_ts": 1794418238,
   "grade": "B",
   "signal_ts": 1794398400
+ },
+ "MPCSTOCK_USDT": {
+  "alert_ts": 1794503978,
+  "grade": "B",
+  "signal_ts": 1794484800
  },
  "MTSISTOCK_USDT": {
   "alert_ts": 1794485495,
@@ -139,6 +159,16 @@
   "grade": "B",
   "signal_ts": 1794398400
  },
+ "SMH_USDT": {
+  "alert_ts": 1794503993,
+  "grade": "B",
+  "signal_ts": 1794484800
+ },
+ "SOXX_USDT": {
+  "alert_ts": 1794503988,
+  "grade": "B",
+  "signal_ts": 1794484800
+ },
  "TAO_USDT": {
   "alert_ts": 1794418240,
   "grade": "B",
@@ -173,6 +203,11 @@
   "alert_ts": 1794417644,
   "grade": "B",
   "signal_ts": 1794398400
+ },
+ "VRTSTOCK_USDT": {
+  "alert_ts": 1794503990,
+  "grade": "B",
+  "signal_ts": 1794484800
  },
  "XPIN_USDT": {
   "alert_ts": 1794490727,
