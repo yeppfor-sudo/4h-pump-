@@ -109,6 +109,11 @@
   "grade": "B",
   "signal_ts": 1794398400
  },
+ "PRL_USDT": {
+  "alert_ts": 1794477555,
+  "grade": "B",
+  "signal_ts": 1794456000
+ },
  "PWRSTOCK_USDT": {
   "alert_ts": 1794417677,
   "grade": "B",
