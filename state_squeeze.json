@@ -29,6 +29,11 @@
   "grade": "B",
   "signal_ts": 1794398400
  },
+ "BAT_USDT": {
+  "alert_ts": 1794517830,
+  "grade": "B",
+  "signal_ts": 1794499200
+ },
  "BEAMX_USDT": {
   "alert_ts": 1794460974,
   "grade": "B",
@@ -110,9 +115,9 @@
   "signal_ts": 1794470400
  },
  "OKTASTOCK_USDT": {
-  "alert_ts": 1794418218,
+  "alert_ts": 1794517836,
   "grade": "B",
-  "signal_ts": 1794398400
+  "signal_ts": 1794499200
  },
  "ONT_USDT": {
   "alert_ts": 1794418269,
@@ -134,6 +139,16 @@
   "grade": "B",
   "signal_ts": 1794398400
  },
+ "PBRSTOCK_USDT": {
+  "alert_ts": 1794517816,
+  "grade": "B",
+  "signal_ts": 1794499200
+ },
+ "PLUME_USDT": {
+  "alert_ts": 1794517826,
+  "grade": "B",
+  "signal_ts": 1794499200
+ },
  "PRL_USDT": {
   "alert_ts": 1794477555,
   "grade": "B",
@@ -143,6 +158,11 @@
   "alert_ts": 1794417677,
   "grade": "B",
   "signal_ts": 1794398400
+ },
+ "PYTH_USDT": {
+  "alert_ts": 1794517832,
+  "grade": "B",
+  "signal_ts": 1794499200
  },
  "Q_USDT": {
   "alert_ts": 1794433989,
@@ -169,10 +189,20 @@
   "grade": "B",
   "signal_ts": 1794484800
  },
+ "S_USDT": {
+  "alert_ts": 1794517819,
+  "grade": "B",
+  "signal_ts": 1794499200
+ },
  "TAO_USDT": {
   "alert_ts": 1794418240,
   "grade": "B",
   "signal_ts": 1794398400
+ },
+ "TIA_USDT": {
+  "alert_ts": 1794517828,
+  "grade": "B",
+  "signal_ts": 1794499200
  },
  "TREE_USDT": {
   "alert_ts": 1794417675,
@@ -193,6 +223,11 @@
   "alert_ts": 1794418233,
   "grade": "B",
   "signal_ts": 1794398400
+ },
+ "USOIL_USDT": {
+  "alert_ts": 1794517822,
+  "grade": "B",
+  "signal_ts": 1794499200
  },
  "VELVET_USDT": {
   "alert_ts": 1794417679,
