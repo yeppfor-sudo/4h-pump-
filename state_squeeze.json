@@ -9,6 +9,11 @@
   "grade": "A",
   "signal_ts": 1794398400
  },
+ "ACU_USDT": {
+  "alert_ts": 1794475331,
+  "grade": "B",
+  "signal_ts": 1794456000
+ },
  "AEON1_USDT": {
   "alert_ts": 1794417670,
   "grade": "B",
