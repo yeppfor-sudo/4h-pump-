@@ -24,6 +24,11 @@
   "grade": "B",
   "signal_ts": 1794398400
  },
+ "BEAMX_USDT": {
+  "alert_ts": 1794460974,
+  "grade": "B",
+  "signal_ts": 1794441600
+ },
  "BILL_USDT": {
   "alert_ts": 1794417652,
   "grade": "B",
@@ -153,5 +158,10 @@
   "alert_ts": 1794417644,
   "grade": "B",
   "signal_ts": 1794398400
+ },
+ "XTEN_USDT": {
+  "alert_ts": 1794460973,
+  "grade": "B",
+  "signal_ts": 1794441600
  }
 }
