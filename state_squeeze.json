@@ -84,6 +84,11 @@
   "grade": "B",
   "signal_ts": 1794398400
  },
+ "MTSISTOCK_USDT": {
+  "alert_ts": 1794485495,
+  "grade": "B",
+  "signal_ts": 1794470400
+ },
  "OKTASTOCK_USDT": {
   "alert_ts": 1794418218,
   "grade": "B",
