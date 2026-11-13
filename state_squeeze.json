@@ -64,15 +64,30 @@
   "grade": "B",
   "signal_ts": 1794398400
  },
+ "CSOPSKHYNIX2L_USDT": {
+  "alert_ts": 1794533565,
+  "grade": "B",
+  "signal_ts": 1794513600
+ },
  "DDOGSTOCK_USDT": {
   "alert_ts": 1794417648,
   "grade": "B",
   "signal_ts": 1794398400
  },
+ "DRAM_USDT": {
+  "alert_ts": 1794533567,
+  "grade": "B",
+  "signal_ts": 1794513600
+ },
  "DVNSTOCK_USDT": {
   "alert_ts": 1794417673,
   "grade": "B",
   "signal_ts": 1794398400
+ },
+ "DYDX_USDT": {
+  "alert_ts": 1794533562,
+  "grade": "B",
+  "signal_ts": 1794513600
  },
  "DYM_USDT": {
   "alert_ts": 1794417654,
@@ -89,6 +104,11 @@
   "grade": "A",
   "signal_ts": 1794398400
  },
+ "FUJIKURASTOCK_USDT": {
+  "alert_ts": 1794533551,
+  "grade": "B",
+  "signal_ts": 1794513600
+ },
  "GEVSTOCK_USDT": {
   "alert_ts": 1794503985,
   "grade": "B",
@@ -98,6 +118,11 @@
   "alert_ts": 1794503997,
   "grade": "B",
   "signal_ts": 1794484800
+ },
+ "MINA_USDT": {
+  "alert_ts": 1794533556,
+  "grade": "B",
+  "signal_ts": 1794513600
  },
  "MONAD_USDT": {
   "alert_ts": 1794418238,
@@ -135,9 +160,9 @@
   "signal_ts": 1794398400
  },
  "PANASONICSTOCK_USDT": {
-  "alert_ts": 1794418273,
+  "alert_ts": 1794533554,
   "grade": "B",
-  "signal_ts": 1794398400
+  "signal_ts": 1794513600
  },
  "PBRSTOCK_USDT": {
   "alert_ts": 1794517816,
@@ -168,6 +193,11 @@
   "alert_ts": 1794433989,
   "grade": "B",
   "signal_ts": 1794412800
+ },
+ "RAM_USDT": {
+  "alert_ts": 1794533569,
+  "grade": "B",
+  "signal_ts": 1794513600
  },
  "RDDTSTOCK_USDT": {
   "alert_ts": 1794418216,
@@ -213,6 +243,11 @@
   "alert_ts": 1794418214,
   "grade": "B",
   "signal_ts": 1794398400
+ },
+ "UB_USDT": {
+  "alert_ts": 1794533549,
+  "grade": "B",
+  "signal_ts": 1794513600
  },
  "USARSTOCK_USDT": {
   "alert_ts": 1794417642,
