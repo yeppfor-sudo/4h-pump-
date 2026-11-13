@@ -34,6 +34,11 @@
   "grade": "B",
   "signal_ts": 1794398400
  },
+ "BASED_USDT": {
+  "alert_ts": 1794590237,
+  "grade": "B",
+  "signal_ts": 1794571200
+ },
  "BAT_USDT": {
   "alert_ts": 1794517830,
   "grade": "B",
@@ -48,6 +53,11 @@
   "alert_ts": 1794561590,
   "grade": "B",
   "signal_ts": 1794542400
+ },
+ "BLESS_USDT": {
+  "alert_ts": 1794590224,
+  "grade": "B",
+  "signal_ts": 1794571200
  },
  "BOTSTOCK_USDT": {
   "alert_ts": 1794418231,
@@ -194,6 +204,11 @@
   "grade": "B",
   "signal_ts": 1794470400
  },
+ "NXPC_USDT": {
+  "alert_ts": 1794590229,
+  "grade": "B",
+  "signal_ts": 1794571200
+ },
  "OKTASTOCK_USDT": {
   "alert_ts": 1794517836,
   "grade": "B",
@@ -223,6 +238,11 @@
   "alert_ts": 1794517816,
   "grade": "B",
   "signal_ts": 1794499200
+ },
+ "PENDLE_USDT": {
+  "alert_ts": 1794590232,
+  "grade": "B",
+  "signal_ts": 1794571200
  },
  "PLUME_USDT": {
   "alert_ts": 1794517826,
@@ -364,6 +384,11 @@
   "grade": "B",
   "signal_ts": 1794556800
  },
+ "VANA_USDT": {
+  "alert_ts": 1794590226,
+  "grade": "B",
+  "signal_ts": 1794571200
+ },
  "VELVET_USDT": {
   "alert_ts": 1794417679,
   "grade": "B",
@@ -378,6 +403,11 @@
   "alert_ts": 1794503990,
   "grade": "B",
   "signal_ts": 1794484800
+ },
+ "WAL_USDT": {
+  "alert_ts": 1794590234,
+  "grade": "B",
+  "signal_ts": 1794571200
  },
  "XDP_USDT": {
   "alert_ts": 1794561605,
