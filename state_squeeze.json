@@ -84,10 +84,15 @@
   "grade": "B",
   "signal_ts": 1794513600
  },
- "DDOGSTOCK_USDT": {
-  "alert_ts": 1794417648,
+ "DATA_USDT": {
+  "alert_ts": 1794604299,
   "grade": "B",
-  "signal_ts": 1794398400
+  "signal_ts": 1794585600
+ },
+ "DDOGSTOCK_USDT": {
+  "alert_ts": 1794604288,
+  "grade": "B",
+  "signal_ts": 1794585600
  },
  "DEXE_USDT": {
   "alert_ts": 1794561613,
@@ -164,6 +169,11 @@
   "grade": "B",
   "signal_ts": 1794556800
  },
+ "INX_USDT": {
+  "alert_ts": 1794604294,
+  "grade": "B",
+  "signal_ts": 1794585600
+ },
  "IOTA_USDT": {
   "alert_ts": 1794574655,
   "grade": "B",
@@ -173,6 +183,11 @@
   "alert_ts": 1794503997,
   "grade": "B",
   "signal_ts": 1794484800
+ },
+ "LAB_USDT": {
+  "alert_ts": 1794604279,
+  "grade": "A",
+  "signal_ts": 1794585600
  },
  "LIGHT_USDT": {
   "alert_ts": 1794574645,
@@ -204,15 +219,20 @@
   "grade": "B",
   "signal_ts": 1794470400
  },
+ "NEX_USDT": {
+  "alert_ts": 1794604281,
+  "grade": "B",
+  "signal_ts": 1794585600
+ },
  "NXPC_USDT": {
   "alert_ts": 1794590229,
   "grade": "B",
   "signal_ts": 1794571200
  },
  "OKTASTOCK_USDT": {
-  "alert_ts": 1794517836,
+  "alert_ts": 1794604296,
   "grade": "B",
-  "signal_ts": 1794499200
+  "signal_ts": 1794585600
  },
  "ONT_USDT": {
   "alert_ts": 1794418269,
@@ -414,6 +434,11 @@
   "grade": "B",
   "signal_ts": 1794542400
  },
+ "XNY_USDT": {
+  "alert_ts": 1794604292,
+  "grade": "B",
+  "signal_ts": 1794585600
+ },
  "XPIN_USDT": {
   "alert_ts": 1794490727,
   "grade": "B",
@@ -428,6 +453,11 @@
   "alert_ts": 1794561582,
   "grade": "B",
   "signal_ts": 1794542400
+ },
+ "ZKSYNC_USDT": {
+  "alert_ts": 1794604290,
+  "grade": "B",
+  "signal_ts": 1794585600
  },
  "ZORA_USDT": {
   "alert_ts": 1794561599,
