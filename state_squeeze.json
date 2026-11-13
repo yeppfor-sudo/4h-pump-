@@ -204,6 +204,11 @@
   "grade": "B",
   "signal_ts": 1794398400
  },
+ "RECRUITSTOCK_USDT": {
+  "alert_ts": 1794547272,
+  "grade": "B",
+  "signal_ts": 1794528000
+ },
  "RIVER_USDT": {
   "alert_ts": 1794418267,
   "grade": "B",
@@ -213,6 +218,11 @@
   "alert_ts": 1794503993,
   "grade": "B",
   "signal_ts": 1794484800
+ },
+ "SOPH_USDT": {
+  "alert_ts": 1794547274,
+  "grade": "B",
+  "signal_ts": 1794528000
  },
  "SOXX_USDT": {
   "alert_ts": 1794503988,
