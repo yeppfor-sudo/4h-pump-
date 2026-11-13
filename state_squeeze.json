@@ -24,6 +24,11 @@
   "grade": "B",
   "signal_ts": 1794398400
  },
+ "ALLO_USDT": {
+  "alert_ts": 1794574647,
+  "grade": "B",
+  "signal_ts": 1794556800
+ },
  "BAN_USDT": {
   "alert_ts": 1794417656,
   "grade": "B",
@@ -144,10 +149,25 @@
   "grade": "B",
   "signal_ts": 1794484800
  },
+ "HYPE_USDT": {
+  "alert_ts": 1794574639,
+  "grade": "B",
+  "signal_ts": 1794556800
+ },
+ "IOTA_USDT": {
+  "alert_ts": 1794574655,
+  "grade": "B",
+  "signal_ts": 1794556800
+ },
  "KLACSTOCK_USDT": {
   "alert_ts": 1794503997,
   "grade": "B",
   "signal_ts": 1794484800
+ },
+ "LIGHT_USDT": {
+  "alert_ts": 1794574645,
+  "grade": "B",
+  "signal_ts": 1794556800
  },
  "MARSCOIN_USDT": {
   "alert_ts": 1794561584,
@@ -259,6 +279,11 @@
   "grade": "B",
   "signal_ts": 1794484800
  },
+ "SOLV_USDT": {
+  "alert_ts": 1794574651,
+  "grade": "B",
+  "signal_ts": 1794556800
+ },
  "SOPH_USDT": {
   "alert_ts": 1794547274,
   "grade": "B",
@@ -269,10 +294,20 @@
   "grade": "B",
   "signal_ts": 1794484800
  },
+ "SPORTFUN_USDT": {
+  "alert_ts": 1794574649,
+  "grade": "B",
+  "signal_ts": 1794556800
+ },
  "S_USDT": {
   "alert_ts": 1794517819,
   "grade": "B",
   "signal_ts": 1794499200
+ },
+ "TAC_USDT": {
+  "alert_ts": 1794574641,
+  "grade": "B",
+  "signal_ts": 1794556800
  },
  "TAO_USDT": {
   "alert_ts": 1794418240,
@@ -318,6 +353,11 @@
   "alert_ts": 1794517822,
   "grade": "B",
   "signal_ts": 1794499200
+ },
+ "US_USDT": {
+  "alert_ts": 1794574653,
+  "grade": "B",
+  "signal_ts": 1794556800
  },
  "VELVET_USDT": {
   "alert_ts": 1794417679,
