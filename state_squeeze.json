@@ -1,8 +1,8 @@
 {
  "0G_USDT": {
-  "alert_ts": 1794417637,
-  "grade": "A",
-  "signal_ts": 1794398400
+  "alert_ts": 1794561609,
+  "grade": "B",
+  "signal_ts": 1794542400
  },
  "AAOISTOCK_USDT": {
   "alert_ts": 1794417639,
@@ -40,9 +40,9 @@
   "signal_ts": 1794441600
  },
  "BILL_USDT": {
-  "alert_ts": 1794417652,
+  "alert_ts": 1794561590,
   "grade": "B",
-  "signal_ts": 1794398400
+  "signal_ts": 1794542400
  },
  "BOTSTOCK_USDT": {
   "alert_ts": 1794418231,
@@ -74,6 +74,26 @@
   "grade": "B",
   "signal_ts": 1794398400
  },
+ "DEXE_USDT": {
+  "alert_ts": 1794561613,
+  "grade": "B",
+  "signal_ts": 1794542400
+ },
+ "DNA_USDT": {
+  "alert_ts": 1794561586,
+  "grade": "B",
+  "signal_ts": 1794542400
+ },
+ "DOGS_USDT": {
+  "alert_ts": 1794561607,
+  "grade": "B",
+  "signal_ts": 1794542400
+ },
+ "DOOD_USDT": {
+  "alert_ts": 1794561601,
+  "grade": "B",
+  "signal_ts": 1794542400
+ },
  "DRAM_USDT": {
   "alert_ts": 1794533567,
   "grade": "B",
@@ -93,6 +113,16 @@
   "alert_ts": 1794417654,
   "grade": "B",
   "signal_ts": 1794398400
+ },
+ "ESPORTS_USDT": {
+  "alert_ts": 1794561597,
+  "grade": "B",
+  "signal_ts": 1794542400
+ },
+ "FET_USDT": {
+  "alert_ts": 1794561594,
+  "grade": "B",
+  "signal_ts": 1794542400
  },
  "FLEXSTOCK_USDT": {
   "alert_ts": 1794503995,
@@ -118,6 +148,11 @@
   "alert_ts": 1794503997,
   "grade": "B",
   "signal_ts": 1794484800
+ },
+ "MARSCOIN_USDT": {
+  "alert_ts": 1794561584,
+  "grade": "B",
+  "signal_ts": 1794542400
  },
  "MINA_USDT": {
   "alert_ts": 1794533556,
@@ -173,6 +208,11 @@
   "alert_ts": 1794517826,
   "grade": "B",
   "signal_ts": 1794499200
+ },
+ "PONS_USDT": {
+  "alert_ts": 1794561578,
+  "grade": "A",
+  "signal_ts": 1794542400
  },
  "PRL_USDT": {
   "alert_ts": 1794477555,
@@ -244,10 +284,15 @@
   "grade": "B",
   "signal_ts": 1794499200
  },
- "TREE_USDT": {
-  "alert_ts": 1794417675,
+ "TRADOOR_USDT": {
+  "alert_ts": 1794561588,
   "grade": "B",
-  "signal_ts": 1794398400
+  "signal_ts": 1794542400
+ },
+ "TREE_USDT": {
+  "alert_ts": 1794561592,
+  "grade": "B",
+  "signal_ts": 1794542400
  },
  "TWLOSTOCK_USDT": {
   "alert_ts": 1794418214,
@@ -289,6 +334,11 @@
   "grade": "B",
   "signal_ts": 1794484800
  },
+ "XDP_USDT": {
+  "alert_ts": 1794561605,
+  "grade": "B",
+  "signal_ts": 1794542400
+ },
  "XPIN_USDT": {
   "alert_ts": 1794490727,
   "grade": "B",
@@ -298,5 +348,15 @@
   "alert_ts": 1794460973,
   "grade": "B",
   "signal_ts": 1794441600
+ },
+ "ZEREBRO_USDT": {
+  "alert_ts": 1794561582,
+  "grade": "B",
+  "signal_ts": 1794542400
+ },
+ "ZORA_USDT": {
+  "alert_ts": 1794561599,
+  "grade": "B",
+  "signal_ts": 1794542400
  }
 }
