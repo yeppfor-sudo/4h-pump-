@@ -205,9 +205,9 @@
   "signal_ts": 1794398400
  },
  "ORCLSTOCK_USDT": {
-  "alert_ts": 1794417646,
+  "alert_ts": 1794576752,
   "grade": "B",
-  "signal_ts": 1794398400
+  "signal_ts": 1794556800
  },
  "ORDER_USDT": {
   "alert_ts": 1794418271,
@@ -235,9 +235,9 @@
   "signal_ts": 1794542400
  },
  "PRL_USDT": {
-  "alert_ts": 1794477555,
+  "alert_ts": 1794576743,
   "grade": "B",
-  "signal_ts": 1794456000
+  "signal_ts": 1794556800
  },
  "PWRSTOCK_USDT": {
   "alert_ts": 1794417677,
@@ -278,6 +278,11 @@
   "alert_ts": 1794503993,
   "grade": "B",
   "signal_ts": 1794484800
+ },
+ "SNX_USDT": {
+  "alert_ts": 1794576748,
+  "grade": "B",
+  "signal_ts": 1794556800
  },
  "SOLV_USDT": {
   "alert_ts": 1794574651,
@@ -398,5 +403,10 @@
   "alert_ts": 1794561599,
   "grade": "B",
   "signal_ts": 1794542400
+ },
+ "ZSSTOCK_USDT": {
+  "alert_ts": 1794576746,
+  "grade": "B",
+  "signal_ts": 1794556800
  }
 }
