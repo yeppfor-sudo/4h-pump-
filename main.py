@@ -6,7 +6,9 @@ from sweep import detect
 from chart import make_chart
 from notify import (load_state, save_state, caption, send_photo, send_text)
 
-THRESH = 40 if TEST_MODE else MIN_SCORE
+
+def cutoff(tf):
+    return 40 if TEST_MODE else MIN_SCORE_TF[tf]
 
 
 def work(sym):
@@ -18,7 +20,11 @@ def work(sym):
     for tf, n in TIMEFRAMES.items():
         closed, full = resample(df, n)
         for s in detect(sym, tf, closed, full):
-            if s["score"] >= THRESH:
+            cut = cutoff(tf)
+            if s["score"] >= cut:
+                s["cut"] = cut
+                s["grade"] = ("A" if s["score"] >= cut
+                              else "B" if s["score"] >= cut - 10 else "C")
                 s["_full"] = full
                 out.append(s)
     return out
@@ -27,6 +33,7 @@ def work(sym):
 def main():
     syms, skipped = list_symbols()
     print(f"Scanning {len(syms)} crypto USDT perps (skipped {len(skipped)} non-crypto)")
+    print("Cutoffs:", MIN_SCORE_TF if not TEST_MODE else "TEST MODE (40)")
     results = []
     with cf.ThreadPoolExecutor(WORKERS) as ex:
         futs = {ex.submit(work, s): s for s in syms}
@@ -46,7 +53,8 @@ def main():
             if s["age_h"] > MAX_AGE_HOURS or s["key"] in st:
                 continue
         fresh.append(s)
-    fresh.sort(key=lambda x: -x["score"])
+    # rank by how far above its own timeframe cutoff
+    fresh.sort(key=lambda x: -(x["score"] - x["cut"]))
     fresh = fresh[: (3 if TEST_MODE else TOP_N)]
     print(f"{len(results)} raw signals, {len(fresh)} to send")
 
