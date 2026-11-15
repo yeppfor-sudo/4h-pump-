@@ -6,21 +6,22 @@ BASE = "https://contract.mexc.com"
 TIMEFRAMES = {"1d": 1, "2d": 2, "3d": 3, "5d": 5, "7d": 7}
 # how many closed candles back to look for liquidity levels
 LOOKBACK = {"1d": 30, "2d": 25, "3d": 20, "5d": 16, "7d": 14}
+# alert cutoff score per timeframe (higher timeframe = fewer, bigger candles)
+MIN_SCORE_TF = {"1d": 70, "2d": 66, "3d": 62, "5d": 55, "7d": 50}
 
 PIVOT_K = 2
 HISTORY_DAYS = 900
 
 # sweep candle gates
-MIN_WICK = 0.40          # sweep wick must be >= 40% of candle range
-MIN_CLOSE_POS = 0.50     # must close in the upper half (lower half for shorts)
-MIN_RANGE_ATR = 0.8      # candle range >= 0.8 ATR
-MIN_DEPTH_ATR = 0.10     # sweep depth beyond level (in ATR)
-MAX_DEPTH_ATR = 3.0      # deeper than this = breakdown, not sweep
-EQL_TOL_ATR = 0.25       # tolerance for equal highs/lows
+MIN_WICK = 0.40
+MIN_CLOSE_POS = 0.50
+MIN_RANGE_ATR = 0.8
+MIN_DEPTH_ATR = 0.10
+MAX_DEPTH_ATR = 3.0
+EQL_TOL_ATR = 0.25
 SL_BUFFER_ATR = 0.10
 MAX_RISK_ATR = 4.0
 
-MIN_SCORE = float(os.getenv("MIN_SCORE", "70"))      # Grade A
 MAX_AGE_HOURS = float(os.getenv("MAX_AGE_HOURS", "30"))
 TOP_N = int(os.getenv("TOP_N", "25"))
 WORKERS = int(os.getenv("WORKERS", "4"))
