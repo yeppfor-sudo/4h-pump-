@@ -2,6 +2,7 @@ import json
 import os
 import time
 import html
+from datetime import datetime, timezone
 import requests
 from config import *
 
@@ -24,6 +25,11 @@ def save_state(st):
         json.dump(st, f)
 
 
+def _day(ts):
+    # +12h so the date matches the exchange candle day
+    return datetime.fromtimestamp(ts + 43200, tz=timezone.utc).strftime("%d %b %Y")
+
+
 def caption(s):
     e = "🟢" if s["side"] == "long" else "🔴"
     kind = ("Sell-side sweep -> LONG" if s["side"] == "long"
@@ -33,9 +39,10 @@ def caption(s):
     return (
         f"{e} <b>{html.escape(s['symbol'])}</b> | {s['tf'].upper()} | "
         f"Grade {s['grade']} ({s['score']})\n"
-        f"{kind}\n"
-        f"Swept level: {fmt(s['level'])} | wick extreme: {fmt(s['extreme'])}\n"
-        f"Closed back {'above' if s['side'] == 'long' else 'below'} the level\n\n"
+        f"{kind} + confirmation candle closed\n"
+        f"Sweep candle: {_day(s['start'])}\n"
+        f"Confirmed by candle: {_day(s['conf_start'])}\n"
+        f"Swept level: {fmt(s['level'])} | wick extreme: {fmt(s['extreme'])}\n\n"
         f"Entry: {fmt(s['entry'])}\n"
         f"SL: {fmt(s['sl'])}\n"
         f"TP1: {fmt(s['tp1'])} ({rr(s['tp1']):.1f}R)\n"
