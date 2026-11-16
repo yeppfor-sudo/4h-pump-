@@ -2,6 +2,11 @@ import numpy as np
 import pandas as pd
 from config import *
 
+# True  = confirmation candle must not break the sweep extreme and must close
+#         back on the right side of the swept level
+# False = alert after any one more closed candle
+CONFIRM_HOLD = True
+
 
 def _ema(s, n):
     return s.ewm(span=n, adjust=False).mean()
@@ -40,7 +45,8 @@ def _pivot_lows(lo, k, start, s):
 
 
 def _long(df, tf, live):
-    """Sell-side liquidity sweep -> long. Shorts reuse this on a flipped frame."""
+    """Sell-side liquidity sweep -> long. Shorts reuse this on a flipped frame.
+    The sweep candle is the LAST candle of df."""
     L, k = LOOKBACK[tf], PIVOT_K
     s = len(df) - 1
     if s < L + 5:
@@ -119,10 +125,6 @@ def _long(df, tf, live):
     tp1, tp2 = entry + 1.5 * risk, entry + 3 * risk
     tp3 = hh if hh > tp2 else entry + 5 * risk
 
-    # stale filter: already stopped out or already ran to TP1
-    if live <= sl or live >= tp1:
-        return None
-
     notes = []
     if touches >= 2:
         notes.append(f"Equal levels x{touches}")
@@ -133,27 +135,58 @@ def _long(df, tf, live):
                 tp1=tp1, tp2=tp2, tp3=tp3, score=sc,
                 grade="A" if sc >= 70 else "B" if sc >= 55 else "C",
                 wick=wick, depth=depth, vr=vr, touches=touches,
-                rsi=float(r) if np.isfinite(r) else 0.0, notes=notes)
+                rsi=float(r) if np.isfinite(r) else 0.0, notes=notes,
+                atr=float(at), hh=float(hh))
+
+
+def _confirm(r, cf, live):
+    """Apply the confirmation candle `cf` (same frame as r, long logic)."""
+    if CONFIRM_HOLD:
+        if cf["low"] <= r["extreme"] or cf["close"] <= r["level"]:
+            return None
+    entry = float(cf["close"])
+    sl = r["sl"]
+    risk = entry - sl
+    if risk <= 0 or risk > MAX_RISK_ATR * r["atr"]:
+        return None
+    tp1, tp2 = entry + 1.5 * risk, entry + 3 * risk
+    tp3 = r["hh"] if r["hh"] > tp2 else entry + 5 * risk
+    # stale filter: already stopped out or already ran to TP1
+    if live <= sl or live >= tp1:
+        return None
+    r.update(entry=entry, tp1=tp1, tp2=tp2, tp3=tp3)
+    return r
 
 
 def detect(sym, tf, closed, full):
-    if len(closed) < LOOKBACK[tf] + 15:
+    """Sweep candle = second-last closed candle,
+    confirmation candle = last closed candle."""
+    if len(closed) < LOOKBACK[tf] + 16:
         return []
     live = float(full["close"].iloc[-1])
     out = []
     for side in ("long", "short"):
         if side == "long":
-            r, sg = _long(closed, tf, live), 1
+            frame, sg, lv = closed, 1, live
         else:
-            r, sg = _long(_flip(closed), tf, -live), -1
+            frame, sg, lv = _flip(closed), -1, -live
+        sweep = frame.iloc[:-1].reset_index(drop=True)
+        cf = frame.iloc[-1]
+        r = _long(sweep, tf, float(sweep["close"].iloc[-1]))
+        if not r:
+            continue
+        r = _confirm(r, cf, lv)
         if not r:
             continue
         for key in ("level", "extreme", "entry", "sl", "tp1", "tp2", "tp3"):
             r[key] = sg * r[key]
+        r.pop("hh", None)
         if side == "short":
             r["rsi"] = 100 - r["rsi"]
-        r.update(side=side, symbol=sym, tf=tf, pos=len(closed) - 1,
-                 start=int(closed["start"].iloc[-1]),
+        r.update(side=side, symbol=sym, tf=tf,
+                 pos=len(closed) - 2, conf_pos=len(closed) - 1,
+                 start=int(closed["start"].iloc[-2]),
+                 conf_start=int(closed["start"].iloc[-1]),
                  end=int(closed["end"].iloc[-1]))
         out.append(r)
     return out
