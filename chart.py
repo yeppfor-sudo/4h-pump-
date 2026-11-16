@@ -16,7 +16,9 @@ def make_chart(full, sig):
     d = (df[["open", "high", "low", "close", "vol"]]
          .rename(columns=str.capitalize).rename(columns={"Vol": "Volume"})
          .tail(N))
-    x = sig["pos"] - (len(df) - len(d))
+    base = len(df) - len(d)
+    x = sig["pos"] - base
+    xc = sig["conf_pos"] - base
     n = len(d)
 
     aps = [mpf.make_addplot(emas[m].tail(N), color=col, width=1.0)
@@ -48,20 +50,28 @@ def make_chart(full, sig):
     if ymin <= sig["tp3"] <= ymax:
         lines.append(("TP3", sig["tp3"], "#0ecb81"))
     for label, price, col in lines:
-        x0 = max(x - 12, 0) if label == "Swept" else max(x - 1, 0)
-        x1 = x + 2 if label == "Swept" else n + 1
+        x0 = max(x - 12, 0) if label == "Swept" else max(xc - 1, 0)
+        x1 = xc + 2 if label == "Swept" else n + 1
         ax.hlines(price, x0, x1, colors=col, linestyles="--", linewidth=1.1)
         ax.text(n + 1.2, price, f"{label} {fmt(price)}", color=col,
                 fontsize=8, va="center")
 
     off = (ymax - ymin) * 0.10
-    ty = sig["extreme"] - off if sig["side"] == "long" else sig["extreme"] + off
+    long_ = sig["side"] == "long"
+    ty = sig["extreme"] - off if long_ else sig["extreme"] + off
     ax.annotate("SWEEP", xy=(x, sig["extreme"]), xytext=(x, ty), ha="center",
                 color="#f59e0b", fontsize=9, fontweight="bold",
                 arrowprops=dict(arrowstyle="->", color="#f59e0b"))
 
+    if 0 <= xc < n:
+        cy = d["High"].iloc[xc] if long_ else d["Low"].iloc[xc]
+        cty = cy + off if long_ else cy - off
+        ax.annotate("CONFIRM", xy=(xc, cy), xytext=(xc, cty), ha="center",
+                    color="#2563eb", fontsize=9, fontweight="bold",
+                    arrowprops=dict(arrowstyle="->", color="#2563eb"))
+
     ax.set_title(f"{sig['symbol']}  {sig['tf'].upper()}  |  "
-                 f"{sig['side'].upper()} liquidity sweep  |  "
+                 f"{sig['side'].upper()} sweep + confirmation  |  "
                  f"Score {sig['score']} (Grade {sig['grade']})", fontsize=11)
     fig.text(0.5, 0.5, WATERMARK, fontsize=70, color="gray", alpha=0.12,
              ha="center", va="center", rotation=30)
